@@ -1,0 +1,9 @@
+spring:
+   profiles:
+      include: system             #system,module1,module2...
+datasource:
+   url: jdbc:mysql://127.0.0.1:3306/test
+   username: root
+   password: 123
+conf:
+   show: 'test profile'
