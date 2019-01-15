@@ -20,6 +20,7 @@ import org.junit.Test;
  * act_ru_task #正在执行任务
  * act_hi_taskinst #任务历史
  * act_hi_varinst #变量历史
+ * act_ge_bytearray #对象变量数据
 
 	账号	密码	角色
 	kermit	kermit	admin

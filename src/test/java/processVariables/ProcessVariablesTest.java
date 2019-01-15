@@ -2,11 +2,13 @@ package processVariables;
 
 import java.io.InputStream;
 import java.util.Date;
+import java.util.List;
 
 import org.activiti.engine.ProcessEngine;
 import org.activiti.engine.ProcessEngines;
 import org.activiti.engine.RuntimeService;
 import org.activiti.engine.TaskService;
+import org.activiti.engine.history.HistoricVariableInstance;
 import org.activiti.engine.repository.Deployment;
 import org.activiti.engine.repository.ProcessDefinition;
 import org.activiti.engine.runtime.ProcessInstance;
@@ -43,6 +45,7 @@ public class ProcessVariablesTest {
 	/**
 	 * 设置流程变量
 	 * act_ru_variable
+	 * act_ge_bytearray
 	 */
 	@Test
 	public void setVariables() {
@@ -64,19 +67,22 @@ public class ProcessVariablesTest {
 	@Test
 	public void getVariables() {
 		TaskService taskService = processEngine.getTaskService();
-		String taskId = "67502";
-		Integer days = (Integer) taskService.getVariable(taskId, "请假天数");
-		Date date = (Date) taskService.getVariable(taskId, "请假日期");
-		String reasean = (String) taskService.getVariable(taskId, "请假原因");
-		System.out.println("请假天数："+days);
-		System.out.println("请假日期:"+date);
-		System.out.println("请假原因:"+reasean);
+		String taskId = "87504";
+//		Integer days = (Integer) taskService.getVariable(taskId, "请假天数");
+//		Date date = (Date) taskService.getVariable(taskId, "请假日期");
+//		String reasean = (String) taskService.getVariable(taskId, "请假原因");
+//		System.out.println("请假天数："+days);
+//		System.out.println("请假日期:"+date);
+//		System.out.println("请假原因:"+reasean);
+		
+		Person p = (Person)taskService.getVariable(taskId, "人员信息");
+		System.out.println(p.getId() + "   " + p.getName());
 	}
 	
 	/**完成我的任务**/
 	@Test
 	public void completeMyPersionalTask() {
-		String taskId = "80002";
+		String taskId = "92502";
 		processEngine.getTaskService()//与正在执行的任务管理相关的service
 			.complete(taskId);
 		System.out.println("完成任务：任务ID："+taskId);
