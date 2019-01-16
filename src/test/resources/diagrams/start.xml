@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:activiti="http://activiti.org/bpmn" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:omgdc="http://www.omg.org/spec/DD/20100524/DC" xmlns:omgdi="http://www.omg.org/spec/DD/20100524/DI" typeLanguage="http://www.w3.org/2001/XMLSchema" expressionLanguage="http://www.w3.org/1999/XPath" targetNamespace="http://www.activiti.org/processdef">
+  <process id="start" name="start" isExecutable="true">
+    <startEvent id="sid-0D2B9984-34E2-4FDB-BF7F-94FB205A019C"></startEvent>
+    <endEvent id="sid-FCCF2DC5-A5C9-4C66-983E-116EF5E147E5"></endEvent>
+    <sequenceFlow id="sid-7C780FD3-E680-4855-B0F1-F93B231A265E" name="开始活动" sourceRef="sid-0D2B9984-34E2-4FDB-BF7F-94FB205A019C" targetRef="sid-FCCF2DC5-A5C9-4C66-983E-116EF5E147E5"></sequenceFlow>
+  </process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_start">
+    <bpmndi:BPMNPlane bpmnElement="start" id="BPMNPlane_start">
+      <bpmndi:BPMNShape bpmnElement="sid-0D2B9984-34E2-4FDB-BF7F-94FB205A019C" id="BPMNShape_sid-0D2B9984-34E2-4FDB-BF7F-94FB205A019C">
+        <omgdc:Bounds height="30.0" width="30.0" x="154.0" y="47.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="sid-FCCF2DC5-A5C9-4C66-983E-116EF5E147E5" id="BPMNShape_sid-FCCF2DC5-A5C9-4C66-983E-116EF5E147E5">
+        <omgdc:Bounds height="28.0" width="28.0" x="155.0" y="150.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge bpmnElement="sid-7C780FD3-E680-4855-B0F1-F93B231A265E" id="BPMNEdge_sid-7C780FD3-E680-4855-B0F1-F93B231A265E">
+        <omgdi:waypoint x="169.0" y="77.0"></omgdi:waypoint>
+        <omgdi:waypoint x="169.0" y="150.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</definitions>

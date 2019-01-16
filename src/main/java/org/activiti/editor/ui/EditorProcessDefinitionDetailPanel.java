@@ -346,8 +346,10 @@ public class EditorProcessDefinitionDetailPanel extends DetailPanel {
     try {
     Deployment deployment = repositoryService.createDeployment()
             .name(modelData.getName())
+            // 解决activiti-rest工程设计流程图保存图片乱码问题 modify by wubin 2019-01-15 start
 //            .addString(processName, new String(bpmnBytes))
             .addString(processName, new String(bpmnBytes, "UTF-8"))
+            // 解决activiti-rest工程设计流程图保存图片乱码问题 modify by wubin 2019-01-15 end
             .deploy();
 
     ExplorerApp.get().getViewManager().showDeploymentPage(deployment.getId());
