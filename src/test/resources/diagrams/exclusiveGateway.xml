@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:activiti="http://activiti.org/bpmn" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:omgdc="http://www.omg.org/spec/DD/20100524/DC" xmlns:omgdi="http://www.omg.org/spec/DD/20100524/DI" typeLanguage="http://www.w3.org/2001/XMLSchema" expressionLanguage="http://www.w3.org/1999/XPath" targetNamespace="http://www.activiti.org/processdef">
+  <process id="exclusiveGateway" name="exclusiveGatewayProcess" isExecutable="true">
+    <startEvent id="sid-25D94714-075E-4B3A-9F0F-917E5BC50131"></startEvent>
+    <userTask id="usertask1" name="费用报销申请" activiti:assignee="王小五"></userTask>
+    <exclusiveGateway id="eg1" name="eg1" default="flow4"></exclusiveGateway>
+    <userTask id="usertask2" name="审批【部门经理】" activiti:assignee="赵小六"></userTask>
+    <userTask id="usertask3" name="财务" activiti:assignee="胡小八"></userTask>
+    <userTask id="usertask4" name="审批【总经理】" activiti:assignee="田小七"></userTask>
+    <endEvent id="sid-820B7A7B-DA22-4A87-953C-C1A23764167F"></endEvent>
+    <sequenceFlow id="flow1" sourceRef="sid-25D94714-075E-4B3A-9F0F-917E5BC50131" targetRef="usertask1"></sequenceFlow>
+    <sequenceFlow id="flow6" sourceRef="usertask2" targetRef="sid-820B7A7B-DA22-4A87-953C-C1A23764167F"></sequenceFlow>
+    <sequenceFlow id="flow7" sourceRef="usertask3" targetRef="sid-820B7A7B-DA22-4A87-953C-C1A23764167F"></sequenceFlow>
+    <sequenceFlow id="flow8" sourceRef="usertask4" targetRef="sid-820B7A7B-DA22-4A87-953C-C1A23764167F"></sequenceFlow>
+    <sequenceFlow id="flow2" sourceRef="usertask1" targetRef="eg1"></sequenceFlow>
+    <sequenceFlow id="flow4" name="默认执行财务" sourceRef="eg1" targetRef="usertask3"></sequenceFlow>
+    <sequenceFlow id="flow3" name="金额&lt;=1000,大于等于500" sourceRef="eg1" targetRef="usertask2">
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${money<=1000 && money>=500}]]></conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="flow5" name="金额&gt;1000" sourceRef="eg1" targetRef="usertask4">
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${money>1000}]]></conditionExpression>
+    </sequenceFlow>
+  </process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_exclusiveGateway">
+    <bpmndi:BPMNPlane bpmnElement="exclusiveGateway" id="BPMNPlane_exclusiveGateway">
+      <bpmndi:BPMNShape bpmnElement="sid-25D94714-075E-4B3A-9F0F-917E5BC50131" id="BPMNShape_sid-25D94714-075E-4B3A-9F0F-917E5BC50131">
+        <omgdc:Bounds height="30.0" width="30.0" x="515.0" y="45.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="usertask1" id="BPMNShape_usertask1">
+        <omgdc:Bounds height="80.0" width="100.0" x="480.0" y="150.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="eg1" id="BPMNShape_eg1">
+        <omgdc:Bounds height="40.0" width="40.0" x="510.0" y="270.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="usertask2" id="BPMNShape_usertask2">
+        <omgdc:Bounds height="80.0" width="100.0" x="195.0" y="405.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="usertask3" id="BPMNShape_usertask3">
+        <omgdc:Bounds height="80.0" width="100.0" x="480.0" y="405.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="usertask4" id="BPMNShape_usertask4">
+        <omgdc:Bounds height="80.0" width="100.0" x="735.0" y="405.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="sid-820B7A7B-DA22-4A87-953C-C1A23764167F" id="BPMNShape_sid-820B7A7B-DA22-4A87-953C-C1A23764167F">
+        <omgdc:Bounds height="28.0" width="28.0" x="516.0" y="585.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge bpmnElement="flow1" id="BPMNEdge_flow1">
+        <omgdi:waypoint x="530.0" y="75.0"></omgdi:waypoint>
+        <omgdi:waypoint x="530.0" y="150.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow2" id="BPMNEdge_flow2">
+        <omgdi:waypoint x="530.1990049751244" y="230.0"></omgdi:waypoint>
+        <omgdi:waypoint x="530.4" y="270.4"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow3" id="BPMNEdge_flow3">
+        <omgdi:waypoint x="517.5227272727273" y="297.52272727272725"></omgdi:waypoint>
+        <omgdi:waypoint x="295.0" y="417.94220665499125"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow4" id="BPMNEdge_flow4">
+        <omgdi:waypoint x="530.4383116883117" y="309.56168831168833"></omgdi:waypoint>
+        <omgdi:waypoint x="530.1294498381877" y="405.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow5" id="BPMNEdge_flow5">
+        <omgdi:waypoint x="542.3227383863081" y="297.67726161369194"></omgdi:waypoint>
+        <omgdi:waypoint x="735.0" y="414.64636542239685"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow6" id="BPMNEdge_flow6">
+        <omgdi:waypoint x="295.0" y="471.53259352952057"></omgdi:waypoint>
+        <omgdi:waypoint x="516.5937769816459" y="589.1217457960253"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow7" id="BPMNEdge_flow7">
+        <omgdi:waypoint x="530.0" y="485.0"></omgdi:waypoint>
+        <omgdi:waypoint x="530.0" y="585.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow8" id="BPMNEdge_flow8">
+        <omgdi:waypoint x="735.0" y="475.19607843137254"></omgdi:waypoint>
+        <omgdi:waypoint x="541.9841174572748" y="591.762532986587"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</definitions>
