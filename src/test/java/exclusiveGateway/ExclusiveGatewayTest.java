@@ -91,6 +91,7 @@ public class ExclusiveGatewayTest {
 	/**
 	 * 流程历史任务实例查询
 	 */
+	@SuppressWarnings("deprecation")
 	@Test
 	public void finHistoryTask() {
 		String processInstanceId = "197501";

@@ -57,7 +57,8 @@ ProcessEngine processEngine = ProcessEngines.getDefaultProcessEngine();
 		
 		// 向后执行，如果流程处于等待状态，使得流程继续执行
 		processEngine.getRuntimeService()
-			.signal(execution.getId());
+//			.signal(execution.getId());
+			.trigger(execution.getId());
 		
 		// 查询执行对象ID
 		Execution execution2 = processEngine.getRuntimeService()
@@ -72,7 +73,9 @@ ProcessEngine processEngine = ProcessEngines.getDefaultProcessEngine();
 		
 		System.out.println("给老板发送短信：金额是："+value);
 		
-		processEngine.getRuntimeService().signal(execution2.getId());
+		processEngine.getRuntimeService()
+//			.signal(execution2.getId());
+			.trigger(execution.getId());
 	}
 	
 	/**

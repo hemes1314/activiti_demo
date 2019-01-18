@@ -3,6 +3,21 @@ server:
    tomcat:
       uri-encoding: UTF-8
 spring:
+   security:
+      user:
+         name: admin 
+         password: 123
+   #Activiti property configuration
+      #在activiti的默认配置中，process-definition-location-prefix 是指定activiti流程描述文件的前缀（即路径），
+      #启动时，activiti就会去寻找此路径下的流程描述文件，并且自动部署；suffix 是一个String数组，表示描述文件的默认后缀名，默认以上两种。
+   activiti:
+      database-schema-update: true
+      check-process-definitions: true
+      process-definition-location-prefix: classpath:/processes/ 
+#     process-definition-location-suffixes:
+#        - **.bpmn
+#        - **.bpmn20.xml
+      history-level: full
    http:
       encoding:
          charset: UTF-8
@@ -58,26 +73,3 @@ mybatis: #Mybatis配置,官方参考：http://www.mybatis.org/spring-boot-starte
   mapper-locations: classpath*:mapper/*.xml
   configuration:
         map-underscore-to-camel-case: true #字段转驼峰命名属性自动映射city_id->cityId
-
-security:
-   enabled: true
-   
-front-end:
-   web:
-      host: '127.0.0.1:8088'
-      home: 'http://${front-end.web.host}/#/'
-    
-# JWT
-jwt:
-  header: Authorization
-  secret: 123@456
-  expiration: 3600 # 秒
-  tokenHead: "Bearer "
-  
-http-pool:
-   max-total: 200
-   default-max-per-route: 100
-   connect-timeout: 5000
-   connection-request-timeout: 1000
-   socket-timeout: 65000
-   validate-after-inactivity: 2000
