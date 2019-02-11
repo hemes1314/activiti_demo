@@ -12,7 +12,7 @@ spring:
       #启动时，activiti就会去寻找此路径下的流程描述文件，并且自动部署；suffix 是一个String数组，表示描述文件的默认后缀名，默认以上两种。
    activiti:
       database-schema-update: true
-      check-process-definitions: true
+      check-process-definitions: false
       process-definition-location-prefix: classpath:/processes/ 
 #     process-definition-location-suffixes:
 #        - **.bpmn

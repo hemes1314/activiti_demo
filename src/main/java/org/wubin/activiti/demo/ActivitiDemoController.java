@@ -8,8 +8,10 @@ import java.util.Map;
 import org.activiti.engine.HistoryService;
 import org.activiti.engine.RuntimeService;
 import org.activiti.engine.TaskService;
+import org.activiti.engine.history.HistoricProcessInstance;
 import org.activiti.engine.history.HistoricTaskInstance;
 import org.activiti.engine.runtime.ProcessInstance;
+import org.activiti.engine.task.Comment;
 import org.activiti.engine.task.IdentityLink;
 import org.activiti.engine.task.Task;
 import org.slf4j.Logger;
@@ -38,7 +40,7 @@ public class ActivitiDemoController {
 		// 实例
 		Map<String, Object> variables = new HashMap<String, Object>();
 		variables.put("userIDs", "达达,个个,中中");
-		ProcessInstance pi = runtimeService.startProcessInstanceByKey("groupTask", variables);
+		ProcessInstance pi = runtimeService.startProcessInstanceByKey("groupTask", "BusinessKey=单据类名+单据id", variables);
 		String processId = pi.getId();
 		logger.info("流程创建成功，当前流程实例ID："+processId);
 		
@@ -51,6 +53,9 @@ public class ActivitiDemoController {
 			taskService.claim(task.getId(), userIds.get(0));
 			logger.info("userId:" + userId + "，拾取任务！");
 		}
+		// 增加批注
+//		Authentication.setAuthenticatedUserId("当前登录人");
+//		taskService.addComment(task.getId(), pi.getId(), "批注");
 		// 完成任务
 		taskService.complete(task.getId());
 		
@@ -63,6 +68,11 @@ public class ActivitiDemoController {
 			// ...
 		}
 		
+		// 使用历史的流程变量查询批注
+//		HistoricProcessInstance historicProcessInstance = historyService.createHistoricProcessInstanceQuery()
+//			.processInstanceBusinessKey("单据类名+单据id")
+//			.singleResult();
+//		List<Comment> list = taskService.getProcessInstanceComments(historicProcessInstance.getId());
 		return historyService
 				.createHistoricTaskInstanceQuery()
 				.processInstanceId(pi.getId())
